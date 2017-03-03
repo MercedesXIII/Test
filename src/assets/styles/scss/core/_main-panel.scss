@@ -1,0 +1,55 @@
+/* $main-panel
+ ------------------------------------------*/
+$md-toolbar-height-desktop: 64px !default;
+$md-toolbar-height-mobile-portrait: 56px !default;
+$md-toolbar-height-mobile-landscape: 48px !default;
+
+.app-inner {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  height: calc(100vh - #{$md-toolbar-height-desktop});
+  @include flexbox;
+  @include flex-direction(row);
+}
+
+@media ($md-xsmall) and (orientation: portrait) {
+  .app-inner {
+    height: calc(100vh - #{$md-toolbar-height-mobile-portrait});
+  }
+}
+
+// Specific height for mobile devices in landscape mode.
+@media ($md-small) and (orientation: landscape) {
+  .app-inner {
+    height: calc(100vh - #{$md-toolbar-height-mobile-landscape});
+  }
+}
+
+.md-sidenav-content {
+  min-height: 100%;
+  //background: $main-panel-bg;
+  box-sizing: border-box;
+  @include flex-direction(column);
+  @include flexbox;
+  @include flex(1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: ($gutter/2);
+  > .main-content {
+    box-sizing: border-box;
+    @include flex-direction(column);
+    @include flexbox;
+    @include flex(1);
+    > .content-view {
+      position: relative;
+      box-sizing: border-box;
+      padding: $gutter;
+      @include flex(1 0 auto);
+    }
+  }
+}
+
+.app-dark .md-sidenav-content {
+  background-color: rgba(53, 53, 53, 1.00);
+}
